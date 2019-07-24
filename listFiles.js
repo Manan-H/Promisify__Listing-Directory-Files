@@ -4,29 +4,37 @@ var allfiles = fs.readdirSync(__dirname);
 
 let thisFolder = __dirname.split('\\')[__dirname.split('\\').length - 1];
 let folders = [];
+let allFilesPaths = [];
 
-
+function sortFolders(){
     allfiles.forEach(item => {
         item.indexOf('.') >= 0  ? null : folders.push(item);
     }) 
-    
-    
+}
 
-    foo = (item) => {
-        let files =  fs.readdirSync(__dirname + '/' + item);
-        files.forEach(items => {
-        allfiles.push(item + '/' + items)
-            items.indexOf('.')  < 0 ? foo(item + '/' + items) : null
-        })
-    }
-folders.forEach(item => {
-    foo(item)
+sortFolders();
+ 
+folders.forEach(folder => {
+    getFolderContent(folder);
+}) 
+
+function getFolderContent(folder){
+    let files =  fs.readdirSync(__dirname + '/' + folder);
+
+    files.forEach(file => {
+        allfiles.push(folder + '/' + file);
+        file.indexOf('.')  < 0 ? getFolderContent(folder + '/' + file) : null;
+    })
+}
+
+
+
+
+allfiles.map((item) => {
+    allFilesPaths.push(thisFolder + '/' + item);
 })
 
-for(let i = 0; i < allfiles.length; i++) {
-    allfiles[i] = thisFolder + '/' + allfiles[i]
-}
-console.log(allfiles);
+console.log(allFilesPaths);
 
 
 
