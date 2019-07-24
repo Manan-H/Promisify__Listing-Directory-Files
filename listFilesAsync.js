@@ -2,11 +2,10 @@ const fs = require('fs');
 
 let thisFolder = __dirname.split('\\')[__dirname.split('\\').length - 1];
 
+let folders = [];
+let allfiles = [];
 
  fs.readdir(__dirname, (err, files) => {
-
-    let folders = [];
-    let allfiles = [];
 
     if(err){console.log(err);}
 
@@ -14,6 +13,8 @@ let thisFolder = __dirname.split('\\')[__dirname.split('\\').length - 1];
         allfiles.push(item);
         item.indexOf('.') >= 0  ? null : folders.push(item);
     });
+
+});
 
 
     foo = (item) => {
@@ -27,21 +28,23 @@ let thisFolder = __dirname.split('\\')[__dirname.split('\\').length - 1];
         
     }
 
-folders.forEach(item => {
+setTimeout(()=> {
+
+    folders.forEach(item => {
     foo(item)
 })
+}, 7000)
 
-for(let i = 0; i < allfiles.length; i++) {
+setTimeout(()=>{
+    for(let i = 0; i < allfiles.length; i++) {
     allfiles[i] = thisFolder + '/' + allfiles[i]
 }
+},13000)
 
-console.log(allfiles)
+setTimeout(() => {
+    console.log(allfiles)
+}, 15000)
+
     
-});
+
     
-
-
-
-
-
-
