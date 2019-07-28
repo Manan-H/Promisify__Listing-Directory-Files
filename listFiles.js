@@ -1,8 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 
-var allfiles = fs.readdirSync(__dirname);
+let thisFolder = path.basename(__dirname);
 
-let thisFolder = __dirname.split('\\')[__dirname.split('\\').length - 1];
+let allfiles = fs.readdirSync(__dirname);
+
 let folders = [];
 let allFilesPaths = [];
 
@@ -26,8 +28,6 @@ function getFolderContent(folder){
         file.indexOf('.')  < 0 ? getFolderContent(folder + '/' + file) : null;
     })
 }
-
-
 
 
 allfiles.map((item) => {
