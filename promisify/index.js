@@ -11,7 +11,7 @@ function promisify(fsFunc){
 
             fsFunc(...args , (error) => {
     
-                if(error) reject(error);
+                if(error) return reject(error);
     
                 resolve('The file created successfully with handcrafted Promise!')
             });    

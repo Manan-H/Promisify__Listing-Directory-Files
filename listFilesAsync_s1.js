@@ -50,7 +50,6 @@ listDirFiles(__dirname, (err, data) => {
     if(err){
         throw err;
     }
-    //console.log(data);
     data.map((d) => {
         console.log(d.split("\\").splice(4).join("/"));
     })
